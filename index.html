@@ -3,92 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Travel - Explore the World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        *{
+        /* إعدادات عامة */
+        * {
             margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            font-family: sans-serif;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            overflow-x: hidden;
         }
-        .home{
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            background-color: rgb(17, 17, 17,0.2);
-        }
-        video{
-            position: absolute;
-             object-fit: cover;
-             height: 100vh;
-            width: 100vw;
-            z-index: -1;
-        }
-        .logo{
-            width: 160px;
-        }
-        header{
-            padding: 20px;
+
+        /* --- تنسيق الهيدر --- */
+        header {
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
-            align-items:center ;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
         }
-        nav a{
-            margin: 10px;
+
+        /* تنسيق الشعار الخاص بك */
+        .logo {
+            width: 160px; /* الحجم الذي وضعته أنت سابقاً */
+            cursor: pointer;
+        }
+
+        nav a {
+            margin: 0 10px;
             text-decoration: none;
             text-transform: uppercase;
             color: white;
-            font-weight: 600;
-            padding: 15px;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 10px 20px;
+            transition: 0.3s;
+            border-radius: 30px;
         }
-        nav a:hover{
-            background-color: rgb(240, 235, 235,0.5);
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.9);
             color: black;
-            transition: 3.4s;
-            border-radius: 20px;
         }
-        .contant h1{
+
+        /* --- تنسيق القسم الرئيسي (Hero Section) --- */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* طبقة سوداء شفافة لتوضيح النص فوق الفيديو */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* شفافية خفيفة */
+            z-index: -1;
+        }
+
+        .hero-content {
             text-align: center;
             color: white;
-            margin-top: 70px;
-            font-size: 90px;
-            font-weight: 800;
-
+            z-index: 1;
+            padding: 0 20px;
         }
-        .contant button{
-            display: block;
-            margin: 20px auto;
-            text-align: center;
+
+        .hero-content h1 {
+            font-size: 80px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            line-height: 1.1;
+        }
+
+        .hero-content button {
             padding: 15px 60px;
-            border-radius: 20px;
+            border-radius: 50px;
             color: black;
+            background: white;
             border: none;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             font-weight: 600;
+            transition: 0.3s;
+            margin-top: 20px;
         }
-         .contant button:hover{
-             background-color: rgba(13, 13, 13, 0.5);
+
+        .hero-content button:hover {
+            background-color: #ddd;
+            transform: translateY(-3px);
+        }
+
+        /* --- قسم الوجهات (جديد) --- */
+        .destinations {
+            padding: 80px 50px;
+            text-align: center;
+            background-color: white;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 50px;
+            color: #222;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        /* صور البطاقات (روابط خارجية مؤقتة لأنك لم تزودني بصور لها) */
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .card-info p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card-info a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* --- الفوتر --- */
+        footer {
+            background-color: #111;
             color: white;
-            transition: 1.5s;
-            border-radius: 20px;
-         }
-         @media screen and (max-width:700px) {
-            header{
+            padding: 40px 50px;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 20px;
+            color: #888;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #bbb;
+        }
+
+        /* --- التجاوب مع الجوال --- */
+        @media screen and (max-width: 768px) {
+            header {
+                padding: 20px;
                 flex-direction: column;
             }
-            .contant h1{
-                font-size: 45px;
-                transition: 2s;
+            .logo {
+                margin-bottom: 15px;
             }
-         }
+            nav a {
+                display: inline-block;
+                margin: 5px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            .hero-content h1 {
+                font-size: 40px;
+            }
+            .destinations {
+                padding: 50px 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="home">
+
+    <div class="hero">
         <video src="project4/images/video1.mp4" loop autoplay muted></video>
+        <div class="overlay"></div> 
+
         <header>
-            <img src="project4/images/Illustration-of-logo-design-template-on-transparent-background-PNG.png" alt="" class="logo">
+            <img src="project4/images/Illustration-of-logo-design-template-on-transparent-background-PNG.png" alt="Logo" class="logo">
             <nav>
                 <a href="#">Home</a>
                 <a href="#">Travel</a>
@@ -96,12 +248,53 @@
                 <a href="#">Support</a>
             </nav>
         </header>
-            <div class="contant">
-                <h1>Explore the World</h1>
-                <button>Explore</button>
-            </div>
-        
-    </div>
-</body>
 
+        <div class="hero-content">
+            <h1>Explore the World</h1>
+            <button>Explore</button>
+        </div>
+    </div>
+
+    <section class="destinations">
+        <h2 class="section-title">Popular Destinations</h2>
+        <div class="cards-container">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Paris">
+                <div class="card-info">
+                    <h3>Paris, France</h3>
+                    <p>Discover the city of lights and enjoy the beautiful Eiffel Tower view.</p>
+                    <a href="#">Read More &rarr;</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Switzerland">
+                <div class="card-info">
+                    <h3>Switzerland</h3>
+                    <p>Explore the mountains and the amazing nature of the Swiss Alps.</p>
+                    <a href="#">Read More &rarr;</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Venice">
+                <div class="card-info">
+                    <h3>Venice, Italy</h3>
+                    <p>Enjoy a boat ride in the classic canals of Venice.</p>
+                    <a href="#">Read More &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Travel Site. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+</body>
 </html>
